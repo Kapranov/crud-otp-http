@@ -3,8 +3,11 @@ defmodule Crud.Application do
 
   use Application
 
+  require Logger
+
   def start(_type, _args) do
     children = [
+      {Plug.Cowboy, scheme: :http, plug: Crud.Router, options: [port: 3000]},
       {Crud.Server, [name: Crud.Server]}
     ]
 

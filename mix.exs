@@ -29,16 +29,19 @@ defmodule Crud.MixProject do
 
   defp deps do
     [
+      {:cowboy, "~> 2.6"},
       {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.10.4", only: :test},
       {:ex_doc, "~> 0.19.2", only: :dev},
       {:ex_unit_notifier, "~> 0.1.4", only: :test},
       {:mix_test_watch, "~> 0.9.0", only: :dev, runtime: false},
+      {:plug_cowboy, "~> 2.0"},
+      {:plug, "~> 1.7"},
       {:remix, "~> 0.0.2", only: :dev}
     ]
   end
 
-  defp applications(:dev), do: applications(:all) ++ [:remix]
+  defp applications(:dev), do: applications(:all) ++ [:remix, :cowboy, :plug]
   defp applications(_all), do: [:logger]
 
   defp docs do
