@@ -7,5 +7,6 @@ defmodule Crud.Server do
 
   def start_link(opts), do: GenServer.start_link(@name, :ok, opts)
 
+  @impl true
   def init(:ok), do: {:ok, []}
 end
