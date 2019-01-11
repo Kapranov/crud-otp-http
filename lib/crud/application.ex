@@ -11,6 +11,8 @@ defmodule Crud.Application do
       {Crud.Server, [name: Crud.Server]}
     ]
 
+    Logger.info("Starting application on port 3000.")
+
     opts = [strategy: :one_for_one, name: Crud.Supervisor]
     Supervisor.start_link(children, opts)
   end
