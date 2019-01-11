@@ -7,6 +7,15 @@ defmodule Crud.Server do
 
   def start_link(opts), do: GenServer.start_link(@name, :ok, opts)
 
+  @doc """
+  Show items
+
+  ## Example
+
+      iex> Crud.Server.show
+      []
+
+  """
   def show, do: GenServer.call(@name, {:show})
 
   @impl true
