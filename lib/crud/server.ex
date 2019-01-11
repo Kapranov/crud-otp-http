@@ -23,9 +23,14 @@ defmodule Crud.Server do
   def add(item), do: GenServer.call(@name, {:add, item})
 
   @doc """
-  Toggle change done on true or false
+  Toggle change done on true or false by id
   """
   def toggle(id), do: GenServer.call(@name, {:toggle, id})
+
+  @doc """
+  Destroy item by id
+  """
+  def del(id), do: GenServer.call(@name, {:del, id})
 
   @impl true
   def init(:ok), do: {:ok, []}
@@ -60,8 +65,21 @@ defmodule Crud.Server do
     {:reply, new_items, new_items}
   end
 
+  @impl true
+  def handle_call({:del, id}, _from, items) do
+    new_items =
+      items
+      |> Enum.filter(fn x ->
+        !is_id?(x, id)
+      end)
+
+    {:reply, new_items, new_items}
+  end
+
   defp generate_id do
-    :crypto.strong_rand_bytes(64)
+    token = :crypto.strong_rand_bytes(64)
+
+    token
     |> Base.url_encode64()
     |> binary_part(0,  64)
   end
