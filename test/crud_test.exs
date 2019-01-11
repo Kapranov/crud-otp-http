@@ -3,6 +3,6 @@ defmodule CrudTest do
   doctest Crud
 
   test "greets the world" do
-    assert Crud.hello() == :world
+    assert 1 + 1 == 2
   end
 end
