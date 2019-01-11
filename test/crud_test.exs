@@ -7,4 +7,11 @@ defmodule CrudTest do
 
     assert items == []
   end
+
+  test "add item" do
+    item = Crud.Server.add("hello")
+    [%{name: value} | _others] = item
+
+    assert value == "hello"
+  end
 end
