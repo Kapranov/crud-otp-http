@@ -4,6 +4,8 @@ defmodule Crud.Router do
   use Plug.Router
   require  EEx
 
+  alias Crud.Server
+
   @template "lib/crud/index.html.eex"
 
   plug(Plug.Static, from: :crud, at: "/static")
@@ -12,7 +14,8 @@ defmodule Crud.Router do
   plug(:dispatch)
 
   get "/" do
-    response =  EEx.eval_file(@template)
+    items = Server.show()
+    response =  EEx.eval_file(@template, items: items)
     send_resp(conn, 200, response)
   end
 

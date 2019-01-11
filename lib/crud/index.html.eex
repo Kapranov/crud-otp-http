@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OTP Simple HTTP Server</title>
+    <title>CRUD</title>
     <meta  charset="utf-8">
     <link  rel="stylesheet"  href="/static/style.css">
   </head>
   <body>
     <h1>Items</h1>
+    <ul>
+      <%= for crud <- items do %>
+        <li><%= crud.name %></li>
+      <% end %>
+    </ul>
   </body>
 </html>
